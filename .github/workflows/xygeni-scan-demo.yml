@@ -32,7 +32,7 @@ jobs:
         run: |
           echo Executing Xygeni scan ....    
           export JAVA_HOME=$JAVA_HOME_17_X64
-          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  -f none --include-collaborators --no-conf-download -n KAKA 
+          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  -f none --include-collaborators --no-conf-download -n KAKA -e **/scanner/**
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
 
