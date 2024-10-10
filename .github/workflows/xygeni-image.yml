@@ -40,6 +40,6 @@ jobs:
         run: |
           echo Executing Xygeni scan ....    
           export JAVA_HOME=$JAVA_HOME_17_X64
-          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  --image openjdk:8 --no-conf-download -n KAKA_image --dir ${GITHUB_WORKSPACE} -e **/scanner/**
+          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  --image=openjdk:8 --no-conf-download -n KAKA_image --dir ${GITHUB_WORKSPACE} -e **/scanner/**
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
