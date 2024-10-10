@@ -26,7 +26,7 @@ jobs:
 
           #curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -u $XY_USERNAME -p $XY_PASSWORD -s $XY_URL -d ${GITHUB_WORKSPACE}/scanner 
           export JAVA_HOME=$JAVA_HOME_17_X64
-          curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -t $XY_TOKEN_PRO -d ${GITHUB_WORKSPACE}/scanner 
+          curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -t ${{ secrets.XY_TOKEN_PRO }} -d ${GITHUB_WORKSPACE}/scanner 
 
       - name: Execution Xygeni Scanner (vuln)
         run: |
