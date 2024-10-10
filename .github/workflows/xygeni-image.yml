@@ -24,8 +24,6 @@ jobs:
         run: |
           echo Downloading Xygeni Scanner ....
           gzip --help
-          exit 1
-
           #curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -u $XY_USERNAME -p $XY_PASSWORD -s $XY_URL -d ${GITHUB_WORKSPACE}/scanner 
           export JAVA_HOME=$JAVA_HOME_17_X64
           curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -t ${{ secrets.XY_TOKEN_PRO }} -d ${GITHUB_WORKSPACE}/scanner 
@@ -43,6 +41,6 @@ jobs:
           echo Executing Xygeni scan ....   
         
           export JAVA_HOME=$JAVA_HOME_17_X64
-          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  --image=openjdk:8 --no-conf-download -n KAKA_image --dir ${GITHUB_WORKSPACE} -e **/scanner/**
+          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  --image=openjdk:8  -n KAKA_image --dir ${GITHUB_WORKSPACE} -e **/scanner/**
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
