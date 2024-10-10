@@ -1,0 +1,38 @@
+name: Xygeni Scan DEMO
+on:
+  workflow_dispatch:  # Allows manual triggering
+  # no push triggers
+  # no pull request triggers
+  # no schedule triggers
+
+jobs:
+  xygeni-scan:
+    name: Xygeni Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for better relevancy of analysis
+
+      - name: Download Xygeni Scanner 
+        run: |
+          echo Downloading Xygeni Scanner ....
+          gzip --help
+          #curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -u $XY_USERNAME -p $XY_PASSWORD -s $XY_URL -d ${GITHUB_WORKSPACE}/scanner 
+          export JAVA_HOME=$JAVA_HOME_17_X64
+          curl -L https://get.xygeni.io/latest/scanner/install.sh | /bin/bash -s -- -t ${{ secrets.XY_TOKEN_DEMO_TRIAL }} -s ${{ secrets.XY_URL_DEMO }} -d ${GITHUB_WORKSPACE}/scanner 
+
+      - name: Execution Xygeni Scanner (repo)
+        run: |
+          echo Executing Xygeni scan ....    
+          export JAVA_HOME=$JAVA_HOME_17_X64
+          ${GITHUB_WORKSPACE}/scanner/xygeni scan  --never-fail  -f none --include-collaborators --no-conf-download -n KAKA 
+        env:
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
+
