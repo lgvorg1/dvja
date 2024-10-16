@@ -27,3 +27,4 @@ jobs:
           xygeni_url: https://api.xygeni.io
           token: ${{ secrets.XYGENI_TOKEN_OR }}
           gh_token: ${{ secrets.GH_PAT }}
+          command: scan -n KK
